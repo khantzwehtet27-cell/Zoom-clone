@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zoom Clone - Login & Sign Up</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+</head>
+<body>
+
+    <div class="auth-container">
+        <div class="auth-box">
+            <h2 id="auth-title">Welcome to Zoom Clone</h2>
+            <p id="auth-subtitle">Login to start or join a meeting</p>
+
+            <form id="auth-form">
+                <div class="input-group">
+                    <label>Email Address</label>
+                    <input type="email" id="email" placeholder="enter your email" required>
+                </div>
+                <div class="input-group">
+                    <label>Password</label>
+                    <input type="password" id="password" placeholder="enter password" required>
+                </div>
+                
+                <button type="submit" id="btn-primary">Login</button>
+            </form>
+
+            <div class="auth-toggle">
+                <p id="toggle-text">Don't have an account? <span id="switch-auth">Sign Up</span></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
