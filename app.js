@@ -34,7 +34,7 @@ if (document.getElementById('auth-title')) {
             btnPrimary.innerText = "Sign Up";
             toggleText.innerHTML = 'Already have an account? <span id="switch-auth">Login</span>';
         } else {
-            authTitle.innerText = "Welcome to Zoom Clone";
+            authTitle.innerText = "Welcome to Skymeet";
             authSubtitle.innerText = "Login to start or join a meeting";
             btnPrimary.innerText = "Login";
             toggleText.innerHTML = 'Don\'t have an account? <span id="switch-auth">Sign Up</span>';
@@ -83,7 +83,7 @@ if (btnCreate) {
         const meetingId = `${n1}-${n2}-${n3}`;
 
         // Jitsi အတွက် ထပ်မံမတူညီနိုင်မည့် သီးသန့် Room Name ဖန်တီးခြင်း
-        const jitsiRoom = "ZoomClone_" + Date.now() + "_" + Math.floor(Math.random() * 1000);
+        const jitsiRoom = "Skymeet_" + Date.now() + "_" + Math.floor(Math.random() * 1000);
 
         // အချက်အလက်များကို Firebase Firestore Database ထဲသို့ လှမ်းသိမ်းခြင်း
         db.collection("meetings").doc(meetingId).set({
