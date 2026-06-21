@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zoom Clone - Connected Room</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #16161a;
+            overflow: hidden;
+        }
+        #meet-container {
+            width: 100%;
+            height: 100vh;
+        }
+    </style>
+    
+    <script src="https://meet.jit.si/external_api.js"></script>
+</head>
+<body>
+
+    <div id="meet-container"></div>
+
+    <script>
+        // URL parameter ကနေ Jitsi Room Name ကို လှမ်းယူခြင်း
+        const urlParams = new URLSearchParams(window.location.search);
+        const roomName = urlParams.get('room');
+
+        if (!roomName) {
+            alert("Invalid Meeting Room!");
+            window.location.href = "dashboard.html";
+        }
+
+        const domain = "meet.jit.si";
+        const options = {
+            roomName: roomName,
+            width: "100%",
+            height: "100%",
+            parentNode: document.querySelector('#meet-container'),
+            configOverwrite: { 
+                startWithAudioMuted: false,
+                startWithVideoMuted: false,
+                whiteboard: {
+                    enabled: true // ဝှိုက်ဘုတ် (Whiteboard) Feature ကို ဖွင့်ထားခြင်း
+                }
+            },
+            interfaceConfigOverwrite: {
+                TOOLBAR_BUTTONS: [
+                    'microphone', 'camera', 'closedcaptions', 'desktop', 'embedmeeting', 'fullscreen',
+                    'fittowindow', 'hangup', 'profile', 'chat', 'recording',
+                    'livestreaming', 'sharedvideo', 'settings', 'raisehand',
+                    'videoquality', 'filmstrip', 'invite', 'tileview', 'videobackgroundblur', 
+                    'mute-everyone', 'security', 'whiteboard' // Whiteboard ခလုတ်ကို Tool တွေထဲ ထည့်ထားခြင်း
+                ]
+            }
+        };
+
+        // Jitsi API ကို စတင်မောင်းနှင်ခြင်း
+        const api = new JitsiMeetExternalAPI(domain, options);
+        
+        // Meeting ထဲက ထွက်လိုက်ရင် Dashboard ကို ပြန်ပို့ပေးမည့် Logic
+        api.addEventListener('videoConferenceLeft', () => {
+            window.location.href = "dashboard.html";
+        });
+    </script>
+</body>
+</html>
