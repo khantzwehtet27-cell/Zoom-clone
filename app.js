@@ -1,11 +1,11 @@
-// Firebase Configuration (မင်းရဲ့ ကိုယ်ပိုင် Firebase Keys တွေနဲ့ နောက်အဆင့်မှာ လာလဲရပါမယ်)
+// မင်းရဲ့ Screenshot ပါ အစစ်အမှန် Firebase Configuration Keys များ
 const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_AUTH_DOMAIN",
-    projectId: "YOUR_PROJECT_ID",
-    storageBucket: "YOUR_STORAGE_BUCKET",
-    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-    appId: "YOUR_APP_ID"
+    apiKey: "AIzaSyBB5VyqQTkHTQ9n1xhzmFBNc15v77d2g6w",
+    authDomain: "zwe-meet.firebaseapp.com",
+    projectId: "zwe-meet",
+    storageBucket: "zwe-meet.firebasestorage.app",
+    messagingSenderId: "444155046848",
+    appId: "1:444155046848:web:416a545fbd2cb9ffae3625"
 };
 
 // Firebase ကို စတင်ပတ်မောင်းခြင်း (Initialize)
@@ -13,28 +13,31 @@ firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 const db = firebase.firestore();
 
-// UI UI Toggle Logic (Login <-> Sign Up ပြောင်းလဲပေးတဲ့ စနစ်)
-const authTitle = document.getElementById('auth-title');
-const authSubtitle = document.getElementById('auth-subtitle');
-const btnPrimary = document.getElementById('btn-primary');
-const switchAuth = document.getElementById('switch-auth');
-const toggleText = document.getElementById('toggle-text');
+// --- UI Toggle Logic (Login <-> Sign Up ပြောင်းလဲပေးတဲ့ စနစ်) ---
+// ဒီကုဒ်တွေက index.html မှာရှိတဲ့ Form ကို ထိန်းချုပ်ဖို့ ဖြစ်ပါတယ်
+if (document.getElementById('auth-title')) {
+    const authTitle = document.getElementById('auth-title');
+    const authSubtitle = document.getElementById('auth-subtitle');
+    const btnPrimary = document.getElementById('btn-primary');
+    const switchAuth = document.getElementById('switch-auth');
+    const toggleText = document.getElementById('toggle-text');
 
-let isLoginMode = true;
+    let isLoginMode = true;
 
-switchAuth.addEventListener('click', () => {
-    isLoginMode = !isLoginMode;
-    if (!isLoginMode) {
-        authTitle.innerText = "Create Account";
-        authSubtitle.innerText = "Sign up to start hosting global meetings";
-        btnPrimary.innerText = "Sign Up";
-        toggleText.innerHTML = 'Already have an account? <span id="switch-auth">Login</span>';
-    } else {
-        authTitle.innerText = "Welcome to Zoom Clone";
-        authSubtitle.innerText = "Login to start or join a meeting";
-        btnPrimary.innerText = "Login";
-        toggleText.innerHTML = 'Don\'t have an account? <span id="switch-auth">Sign Up</span>';
-    }
-    // Dynamic ဖြစ်နေလို့ switch-auth ကို ပြန်လည် နားထောင်ခိုင်းရခြင်းဖြစ်ပါတယ်
-    document.getElementById('switch-auth').addEventListener('click', arguments.callee);
-});
+    switchAuth.addEventListener('click', function toggle() {
+        isLoginMode = !isLoginMode;
+        if (!isLoginMode) {
+            authTitle.innerText = "Create Account";
+            authSubtitle.innerText = "Sign up to start hosting global meetings";
+            btnPrimary.innerText = "Sign Up";
+            toggleText.innerHTML = 'Already have an account? <span id="switch-auth">Login</span>';
+        } else {
+            authTitle.innerText = "Welcome to Zoom Clone";
+            authSubtitle.innerText = "Login to start or join a meeting";
+            btnPrimary.innerText = "Login";
+            toggleText.innerHTML = 'Don\'t have an account? <span id="switch-auth">Sign Up</span>';
+        }
+        // Re-bind click event for dynamic element
+        document.getElementById('switch-auth').addEventListener('click', toggle);
+    });
+}
