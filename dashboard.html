@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zoom Clone - Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+</head>
+<body>
+
+    <div class="auth-container" style="max-width: 600px;">
+        <div class="auth-box">
+            <h2>Zoom Clone Dashboard</h2>
+            <p>Start a new global meeting or join an existing one</p>
+
+            <div style="display: flex; gap: 20px; text-align: left; margin-top: 20px;">
+                
+                <div style="flex: 1; background: #16161a; padding: 20px; border-radius: 8px;">
+                    <h3>Host a Meeting</h3>
+                    <br>
+                    <div class="input-group">
+                        <label>Set Passcode</label>
+                        <input type="text" id="create-passcode" placeholder="e.g. 123456" required>
+                    </div>
+                    <button id="btn-create-meeting" style="width: 100%; padding: 12px; background: #2cb67d; border: none; color: white; border-radius: 8px; font-weight: bold; cursor: pointer;">
+                        Create Meeting
+                    </button>
+                    <div id="meeting-info" style="margin-top: 15px; font-size: 13px; color: #2cb67d;"></div>
+                </div>
+
+                <div style="flex: 1; background: #16161a; padding: 20px; border-radius: 8px;">
+                    <h3>Join a Meeting</h3>
+                    <br>
+                    <div class="input-group">
+                        <label>Meeting ID</label>
+                        <input type="text" id="join-id" placeholder="XXX-XXX-XXX" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Meeting Passcode</label>
+                        <input type="password" id="join-passcode" placeholder="Enter passcode" required>
+                    </div>
+                    <button id="btn-join-meeting" style="width: 100%; padding: 12px; background: #7f5af0; border: none; color: white; border-radius: 8px; font-weight: bold; cursor: pointer;">
+                        Join Now
+                    </button>
+                </div>
+
+            </div>
+
+            <br>
+            <button id="btn-logout" style="background: transparent; border: 1px solid #33272a; color: #94a1b2; padding: 8px 16px; border-radius: 6px; cursor: pointer; margin-top: 20px;">
+                Logout Account
+            </button>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
